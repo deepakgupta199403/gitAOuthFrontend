@@ -1,0 +1,34 @@
+<mat-accordion>
+  <mat-expansion-panel
+    (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon svgIcon="github"></mat-icon>
+        <label class="marginl">Github</label>
+        <label *ngIf="authTokenDetails" class="marginll"><mat-icon svgIcon="check"></mat-icon></label>
+        <label *ngIf="authTokenDetails" class="marginll"><mat-icon svgIcon="watch"></mat-icon></label>
+      </mat-panel-title>
+      <div *ngIf="authTokenDetails" layout="column" class="marginr">
+        <div class="textRight" flex>
+          <label class="textsColor">Admin: </label>
+          <label class="textsColor">LastSynced: {{authTokenDetails.createdAt  | date:'YYYY:MM-dd hh:mm a'}}</label>
+        </div>
+        <div class="textRight" flex>
+          <label class="textsColor">Sync Type: full</label>
+        </div>
+      </div>
+    </mat-expansion-panel-header>
+    <div *ngIf="!authTokenDetails" class="alignCenter">
+      <button class="backgroundColor" mat-raised-button color="primary" (click)="redirectToGithub()">Connect</button>
+      <h1 class="textMargin textColor">Connect Shredio with Github</h1>
+    </div>
+    <div *ngIf="authTokenDetails" class="textRight">
+      <button class="backgroundColor margint" mat-raised-button color="primary" (click)="removeGitAuth()">
+        <label>Remove</label>
+        <mat-icon svgIcon="incognito"></mat-icon>
+      </button>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
